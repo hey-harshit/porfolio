@@ -673,21 +673,231 @@
       color: var(--text-muted);
       font-size: 0.88rem;
     }
+    /* ABOUT SECTION STYLES */
+    .about-card {
+      padding: 2.2rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 850px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .about-lead {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.65;
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .highlight-icon {
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    .highlight-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+    }
+
+    .highlight-item span {
+      color: var(--text-muted);
+    }
+
+    /* QUICK FACTS SHEET */
+    .about-facts-box {
+      background: rgba(6, 9, 19, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .facts-title {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.2px;
+    }
+
+    .facts-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .facts-list li {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .facts-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .fact-label {
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .fact-val {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .facts-footer {
+      padding-top: 1rem;
+      border-top: 1px solid var(--card-border);
+    }
+    /* CONTACT SECTION */
+    .contact-card {
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+        padding: 1.75rem;
+      }
+    }
+
+    .contact-info-list a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-info-list a:hover {
+      text-decoration: underline;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .form-group input, 
+    .form-group textarea {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      font-family: var(--font-sans);
+      padding: 0.75rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.25s ease;
+      width: 100%;
+    }
+
+    .form-group input:focus, 
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
   </style>
 </head>
 <body>
 
   <canvas id="bg-canvas"></canvas>
 
-  <!-- NAVIGATION -->
+<!-- NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">Harshit</a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certificates</a>
-      <a href="#education">Education</a>
+      <a href="#about" class="nav-link active">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#certifications" class="nav-link">Certificates</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#contact" class="nav-link">Contact</a>
       <button class="btn btn-resume" onclick="openResumeModal()" style="padding: 0.45rem 1rem; font-size: 0.82rem;">
         📄 Resume
       </button>
@@ -708,7 +918,7 @@
         </div>
 
         <p class="hero-bio">
-          CSE undergraduate at Lovely Professional University focused on scalable software architectures, low-power LoRa communication, and efficient database systems[cite: 1, 3].
+          CSE undergraduate at Lovely Professional University focused on scalable software architectures, low-power LoRa communication, and efficient database systems.
         </p>
 
         <div class="hero-actions">
@@ -738,7 +948,87 @@
         <div class="float-badge badge-bottom">⚡ Web Developer</div>
       </div>
     </header>
+<!-- ABOUT SECTION -->
+    <section id="about-me">
+      <h2 class="section-title">About Me</h2>
+      <div class="glow-card about-card">
+        <div class="about-grid">
+          <!-- Text Narrative Column -->
+          <div class="about-text">
+            <p class="about-lead">
+              I am a <strong>Computer Science &amp; Engineering undergraduate</strong> at Lovely Professional University with a primary focus on building scalable software, efficient database systems, and low-power embedded hardware architectures.
+            </p>
+            <p>
+              My journey centers around writing clean, reliable code that bridges high-level web interfaces with low-level execution logic. From architecting interactive web applications like <em>GreenPulse</em> that compute real-time renewable energy ROI to engineering hardware telemetry through an emergency SOS broadcasting network using <em>Arduino and LoRa SX1278</em> transceivers, I enjoy tackling engineering problems end-to-end.
+            </p>
+            <p>
+              I thrive in fast-paced environments where curiosity meets discipline. Whether writing optimized procedural queries in PostgreSQL, designing modular algorithms in C++ and Python, or configuring CI/CD pipelines with GitHub Actions, I focus on system reliability, performance, and readable codebases.
+            </p>
 
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">🎯</span>
+                <div>
+                  <strong>Primary Focus:</strong>
+                  <span>Full-Stack Development, Embedded Systems &amp; Database Architecture</span>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">⚡</span>
+                <div>
+                  <strong>What I Bring:</strong>
+                  <span>Strong problem-solving fundamentals, adaptability, and cross-functional leadership</span>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🚀</span>
+                <div>
+                  <strong>Current Objective:</strong>
+                  <span>Actively seeking Software Engineering &amp; Systems Developer internships where I can contribute to production-grade features</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recruiter Quick Facts Card -->
+          <div class="about-facts-box">
+            <h3 class="facts-title">// Recruiter Quick Sheet</h3>
+            <ul class="facts-list">
+              <li>
+                <span class="fact-label">Location:</span>
+                <span class="fact-val">Phagwara, Punjab / Sitamarhi, Bihar</span>
+              </li>
+              <li>
+                <span class="fact-label">Degree:</span>
+                <span class="fact-val">B.Tech in Computer Science &amp; Engineering (2025–2029)</span>
+              </li>
+              <li>
+                <span class="fact-label">Core Languages:</span>
+                <span class="fact-val">C, C++, Python, JavaScript (ES6+)</span>
+              </li>
+              <li>
+                <span class="fact-label">Databases:</span>
+                <span class="fact-val">PostgreSQL, Relational Schemas</span>
+              </li>
+              <li>
+                <span class="fact-label">Tools &amp; DevOps:</span>
+                <span class="fact-val">Docker, Git, GitHub Actions (CI/CD)</span>
+              </li>
+              <li>
+                <span class="fact-label">Availability:</span>
+                <span class="fact-val" style="color: var(--accent);">Immediate / Tech Internships</span>
+              </li>
+            </ul>
+
+            <div class="facts-footer">
+              <a href="resume.pdf" download="Harshit_Kumar_CV.pdf" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.82rem; padding: 0.6rem;">
+                Download Resume PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SKILLS WITH MASTERY LEVEL % -->
     <section id="skills">
@@ -763,6 +1053,36 @@
       <h2 class="section-title">Education</h2>
       <div class="timeline" id="education-container"></div>
     </section>
+    <!-- CONTACT SECTION -->
+      <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="glow-card contact-card">
+          <div>
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 700;">Have a project or opportunity?</h3>
+            <p style="margin: 0.75rem 0 1.5rem; color: var(--text-muted); font-size: 0.92rem;">
+              I am currently open for technical internships, open-source collaborations, and developer discussions.
+            </p>
+            <div class="contact-info-list" style="font-size: 0.92rem; line-height: 2;">
+              <div><strong>Email:</strong> <a href="mailto:mail.harshit.in@gmail.com">mail.harshit.in@gmail.com</a></div>
+              <div><strong>Phone:</strong> <span style="color: var(--text-muted);">+91 9955808652</span></div>
+              <div><strong>GitHub:</strong> <a href="https://github.com/hey-harshit" target="_blank">github.com/hey-harshit</a></div>
+              <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/hey-harshit" target="_blank">linkedin.com/in/hey-harshit</a></div>
+            </div>
+          </div>
+  
+          <form onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+              <label for="sender-name">Your Name</label>
+              <input type="text" id="sender-name" required placeholder="Jane Doe">
+            </div>
+            <div class="form-group">
+              <label for="sender-msg">Message</label>
+              <textarea id="sender-msg" rows="4" required placeholder="Hi Harshit, I'd like to discuss..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+          </form>
+        </div>
+      </section>
   </div>
 
   <!-- RESUME MODAL (Like Akshit Jain's screenshot) -->
@@ -855,23 +1175,25 @@
       projects: [
         {
           title: "GreenPulse — Renewable Energy & ROI Web Portal",
+          image: "greenpulse-preview.png",
           date: "Apr 2026 – May 2026",
           bullets: [
-            "Built an interactive single-page educational web portal promoting clean energy adoption across India using vanilla HTML5, modern CSS, and JavaScript.",
-            "Engineered dynamic ROI and cost estimation calculators for solar, wind, and biogas systems that compute savings and payback periods.",
-            "Integrated government subsidy modules and state-wise capacity visualizations for initiatives like PM Surya Ghar."
+            "Built an interactive single-page educational web portal promoting clean energy adoption across India using vanilla HTML5, modern CSS, and JavaScript[cite: 1, 3].",
+            "Engineered dynamic ROI and cost estimation calculators for solar, wind, and biogas systems that compute savings and payback periods[cite: 1, 3].",
+            "Integrated government subsidy modules and state-wise capacity visualizations for initiatives like PM Surya Ghar[cite: 1, 3]."
           ],
           tech: "JavaScript (ES6+), HTML5, CSS3, Netlify",
-          githubUrl: "https://github.com/hey-harshit/che110--project",
+          githubUrl: "https://github.com/hey-harshit/greenPulse-project.git",
           liveUrl: "https://greenpulseportal.netlify.app/"
         },
         {
           title: "LoRa-Based Long-Range Emergency SOS Alert System",
+          image: "lora-preview.png",
           date: "Mar 2026 – May 2026",
           bullets: [
-            "Engineered an off-grid emergency communication system using Arduino Uno microcontrollers and LoRa SX1278 transceiver modules.",
-            "Configured point-to-point wireless RF communication via SPI protocol at 433 MHz for reliable message broadcasting.",
-            "Designed transmitter push-trigger logic and receiver alert indicators for low-latency, low-power distress alarms."
+            "Engineered an off-grid emergency communication system using Arduino Uno microcontrollers and LoRa SX1278 transceiver modules[cite: 1, 3].",
+            "Configured point-to-point wireless RF communication via SPI protocol at 433 MHz for reliable message broadcasting[cite: 1, 3].",
+            "Designed transmitter push-trigger logic and receiver alert indicators for low-latency, low-power distress alarms[cite: 1, 3]."
           ],
           tech: "C/C++ (Embedded), Arduino Uno, LoRa SX1278 (RF), SPI Protocol",
           githubUrl: "https://github.com/hey-harshit",
@@ -1099,6 +1421,34 @@
       renderEducation();
       initTypewriter();
       initCanvasMesh();
+    });
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("sender-name").value;
+      const msg = document.getElementById("sender-msg").value;
+      window.location.href = `mailto:mail.harshit.in@gmail.com?subject=${encodeURIComponent("Portfolio Inquiry from " + name)}&body=${encodeURIComponent(msg)}`;
+    }
+    // ACTIVE NAV SCROLL SPY
+    window.addEventListener("scroll", () => {
+      const sections = document.querySelectorAll("header[id], section[id]");
+      const scrollPos = window.scrollY + 200;
+
+      sections.forEach(sec => {
+        const id = sec.getAttribute("id");
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+
+        if (id && scrollPos >= top && scrollPos < top + height) {
+          document.querySelectorAll(".nav-link").forEach(link => {
+            const href = link.getAttribute("href");
+            if (href === `#${id}`) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
     });
   </script>
 </body>

@@ -882,15 +882,16 @@
     .nav-links a:hover::after {
       width: 100%;
     }
-    /* PROJECT CARD IMAGE PREVIEW */
+   /* PROJECT PREVIEW CONTAINER & PLACEHOLDER */
     .project-preview-wrap {
       width: 100%;
-      height: 220px;
+      height: 200px;
       overflow: hidden;
-      border-radius: 8px;
-      margin-bottom: 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
       border: 1px solid var(--card-border);
-      background: #0b0f19;
+      background: radial-gradient(circle at 50% 50%, #111a2e 0%, #080c18 100%);
+      position: relative;
     }
 
     .project-preview-img {
@@ -899,11 +900,45 @@
       object-fit: cover;
       object-position: top;
       display: block;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
     .project-card:hover .project-preview-img {
       transform: scale(1.03);
+    }
+
+    .project-preview-placeholder {
+      display: none; /* Shows only via onerror if image fails */
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.04));
+      border: 1px dashed rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .ph-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .ph-text strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text);
+      font-family: var(--font-mono);
+      margin-bottom: 2px;
+    }
+
+    .ph-text span {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-family: var(--font-mono);
     }
   </style>
 </head>
@@ -1198,12 +1233,13 @@
       projects: [
         {
           title: "GreenPulse — Renewable Energy & ROI Web Portal",
+          category: "web",
           image: "greenpulse-preview.png",
           date: "Apr 2026 – May 2026",
           bullets: [
-            "Built an interactive single-page educational web portal promoting clean energy adoption across India using vanilla HTML5, modern CSS, and JavaScript[cite: 1, 3].",
-            "Engineered dynamic ROI and cost estimation calculators for solar, wind, and biogas systems that compute savings and payback periods[cite: 1, 3].",
-            "Integrated government subsidy modules and state-wise capacity visualizations for initiatives like PM Surya Ghar[cite: 1, 3]."
+            "Built an interactive single-page educational web portal promoting clean energy adoption across India using vanilla HTML5, modern CSS, and JavaScript.",
+            "Engineered dynamic ROI and cost estimation calculators for solar, wind, and biogas systems that compute savings and payback periods.",
+            "Integrated government subsidy modules and state-wise capacity visualizations for initiatives like PM Surya Ghar."
           ],
           tech: "JavaScript (ES6+), HTML5, CSS3, Netlify",
           githubUrl: "https://github.com/hey-harshit/che110--project",
@@ -1211,12 +1247,13 @@
         },
         {
           title: "LoRa-Based Long-Range Emergency SOS Alert System",
+          category: "embedded",
           image: "lora-preview.png",
           date: "Mar 2026 – May 2026",
           bullets: [
-            "Engineered an off-grid emergency communication system using Arduino Uno microcontrollers and LoRa SX1278 transceiver modules[cite: 1, 3].",
-            "Configured point-to-point wireless RF communication via SPI protocol at 433 MHz for reliable message broadcasting[cite: 1, 3].",
-            "Designed transmitter push-trigger logic and receiver alert indicators for low-latency, low-power distress alarms[cite: 1, 3]."
+            "Engineered an off-grid emergency communication system using Arduino Uno microcontrollers and LoRa SX1278 transceiver modules.",
+            "Configured point-to-point wireless RF communication via SPI protocol at 433 MHz for reliable message broadcasting.",
+            "Designed transmitter push-trigger logic and receiver alert indicators for low-latency, low-power distress alarms."
           ],
           tech: "C/C++ (Embedded), Arduino Uno, LoRa SX1278 (RF), SPI Protocol",
           githubUrl: "https://github.com/hey-harshit",
@@ -1274,21 +1311,28 @@
       `).join("");
     }
 
-    // RENDER PROJECTS WITH PREVIEW IMAGES
+    // RENDER PROJECTS WITH DEDICATED PLACEHOLDER FALLBACK
     function renderProjects() {
       const container = document.getElementById("projects-container");
       container.innerHTML = portfolioData.projects.map(p => `
         <div class="glow-card project-card">
-          ${p.image ? `
-            <div class="project-preview-wrap">
-              <img 
-                src="${p.image}" 
-                alt="${p.title}" 
-                class="project-preview-img"
-                onerror="this.onerror=null; this.parentElement.style.display='none';"
-              />
+          <div class="project-preview-wrap">
+            <img 
+              src="${p.image}" 
+              alt="${p.title}" 
+              class="project-preview-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Visual Tech Placeholder if image is missing -->
+            <div class="project-preview-placeholder">
+              <div class="ph-icon">${p.category === 'embedded' ? '📡' : '🌐'}</div>
+              <div class="ph-text">
+                <strong>${p.title.split('—')[0]}</strong>
+                <span>${p.tech}</span>
+              </div>
             </div>
-          ` : ""}
+          </div>
+
           <div class="project-header">
             <h3>${p.title}</h3>
             <span class="project-date">${p.date}</span>
@@ -1304,7 +1348,6 @@
         </div>
       `).join("");
     }
-
     // RENDER CERTIFICATES WITH PREVIEW IMAGES
     function renderCertifications() {
       const container = document.getElementById("cert-container");
